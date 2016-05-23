@@ -1,3 +1,12 @@
+<% if flash[:alert] %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      alert("Save the url at the bottom of the page to edit/delete in the future ")
+    })
+  </script>
+<% end %>
+
+
 <div class='article-header'>
   Posted: <%= time_ago_in_words(@article.created_at) %> ago |
 
@@ -19,8 +28,11 @@
     <p><%= @article.description %></p>
   </div>
 
+<% if params[:creator] == 'true' %>
   <div>
     <%= link_to "Edit", edit_category_article_path(@article.category, @article) %>
     <%= link_to "Delete", category_article_path(@article.category, @article), method: :delete, data: { confirm: "Are your sure?" } %>
 
+    <p>Link to Edit: localhost:3000/categories/<%= @article.category.id %>/articles/<%= @article.id %>/<%= @article.key %></p>
   </div>
+<% end %>

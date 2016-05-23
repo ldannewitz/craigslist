@@ -15,7 +15,9 @@ class ArticlesController < ApplicationController
     @article = @category.articles.new(article_params)
 
     if @article.save
-      redirect_to category_article_path(@category, @article)
+      @edit_link = category_article_path(@category, @article) + '?creator=true'
+      flash[:alert] = 'Save this url to edit/delete this article:'
+      redirect_to @edit_link
     else
       render 'new'
     end
@@ -29,9 +31,9 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     @category = @article.category
-
+    @edit_link = category_article_path(@category, @article) + '?creator=true'
     if @article.update(article_params)
-      redirect_to category_article_path(@category, @article)
+      redirect_to @edit_link
     else
       render 'edit'
     end
