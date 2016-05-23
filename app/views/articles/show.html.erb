@@ -10,12 +10,17 @@
   <% if !@article.last? %>
      | <%= link_to "Next", [@article.category, @article.next] %>
   <% end %>
-
 </div>
 
 
-<div class='article-content'>
-  <h3><%= @article.title %></h3>
-  <img src="<%= @article.image %>">
-  <p><%= @article.description %></p>
-</div>
+  <div class='article-content'>
+    <h3><%= @article.title %></h3>
+    <img src="<%= @article.image %>">
+    <p><%= @article.description %></p>
+  </div>
+
+  <div>
+    <%= link_to "Edit", edit_category_article_path(@article.category, @article) %>
+    <%= link_to "Delete", category_article_path(@article.category, @article), method: :delete, data: { confirm: "Are your sure?" } %>
+
+  </div>
