@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root 'categories#index'
+  resources :categories, except: :show do
+    resources :articles
+  end
 
+  get '/:category' => 'categories#show', as: 'one_category'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

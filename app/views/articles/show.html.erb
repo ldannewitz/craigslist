@@ -1,0 +1,21 @@
+<div class='article-header'>
+  Posted: <%= time_ago_in_words(@article.created_at) %> ago |
+
+  <% if !@article.first? %>
+    <%= link_to "Prev", [@article.category, @article.previous] %> |
+  <% end %>
+
+  <%= link_to @article.category.name.capitalize, '/' + @article.category.name %>
+
+  <% if !@article.last? %>
+     | <%= link_to "Next", [@article.category, @article.next] %>
+  <% end %>
+
+</div>
+
+
+<div class='article-content'>
+  <h3><%= @article.title %></h3>
+  <img src="<%= @article.image %>">
+  <p><%= @article.description %></p>
+</div>

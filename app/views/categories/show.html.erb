@@ -1,0 +1,4 @@
+<h2><%= @category.name.capitalize %></h2>
+<% @category.articles.each do |article| %>
+  <p><%= link_to article.title, [@category, article] %></p>
+<% end %>
